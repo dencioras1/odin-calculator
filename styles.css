@@ -4,12 +4,14 @@
 }
 
 .display {
-    
+    background-color: rgb(101, 101, 101);
+    height: 12vh;
 }
 
 .ui {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .calculator-container {
@@ -22,14 +24,21 @@
 
 .digits-container {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 16vw;
 }
 
 .operators-container {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 12vw;
 }
 
 button {
-
+    width: 5vw;
+    height: 11vh;
 }
 
 .digit button {
