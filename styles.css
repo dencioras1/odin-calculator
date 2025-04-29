@@ -21,7 +21,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: self-start;
+    /* align-items: self-start; */
 }
 
 .calculator-container {
@@ -59,7 +59,8 @@ button {
 
 }
 
-.equal button {
-
+button #equals{
+    display: flex;
+    flex-grow: 1;
 }
 
