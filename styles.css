@@ -8,7 +8,8 @@
 }
 
 .ui {
-
+    display: flex;
+    flex-direction: row;
 }
 
 .calculator-container {
@@ -20,11 +21,11 @@
 }
 
 .digits-container {
-
+    display: flex;
 }
 
 .operators-container {
-
+    display: flex;
 }
 
 button {
