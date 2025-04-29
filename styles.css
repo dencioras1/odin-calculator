@@ -3,6 +3,15 @@
     margin: 0px;
 }
 
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .display {
     background-color: rgb(101, 101, 101);
     height: 12vh;
@@ -12,6 +21,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: self-start;
 }
 
 .calculator-container {
@@ -26,7 +36,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 16vw;
+    width: 18vw;
 }
 
 .operators-container {
@@ -37,8 +47,8 @@
 }
 
 button {
-    width: 5vw;
-    height: 11vh;
+    width: 6vw;
+    height: 12vh;
 }
 
 .digit button {
