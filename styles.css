@@ -16,8 +16,11 @@ body {
 .display {
     background-color: rgb(4, 34, 7);
     flex: calc(100% / 5);
-    font-size: 5vh;
-    
+    font-family: "VT323", monospace;
+    font-size: 12vh;
+    color: rgb(0, 231, 23);
+    text-align: right;
+    padding-right: 16px;
 }
 
 .ui {
@@ -31,11 +34,13 @@ body {
 .calculator-container {
     display: flex;
     flex-direction: column;
-    background-color: aqua;
+    background-color: rgb(73, 74, 48);
     width: 35vw;
+    min-width: 120px;
     height: 70vh;
-    border: solid 12px rgb(119, 107, 93);
+    border: solid 12px rgb(73, 66, 57);
     border-radius: 12px;
+    box-shadow: 10px azure;
 }
 
 .digits-container {
@@ -49,17 +54,28 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    flex: calc(100% / 5 * 2)
+    flex: calc(100% / 5 * 2);
 }
 
 button {
     flex: 50%;
+    font-family: "Orbitron", sans-serif;
     font-size: 5vh;
-    background-color: antiquewhite;
+    border: solid 3px rgb(140, 114, 80);
+    border-radius: 12px;
+    background-color: rgb(233, 210, 179);
+}
+
+button:hover {
+    background-color: rgb(251, 235, 214);
+}
+
+button:active {
+    background-color: rgb(182, 170, 154);
 }
 
 .digits-container button {
-    flex: calc(100% / 3)
+    flex: calc(100% / 3);
 }
 
 .operator-container button {
