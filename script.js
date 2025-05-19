@@ -37,17 +37,22 @@ operators.forEach(operator => {
 // Object for containing display related variables: numbers a and b, and operator
 let calculation = {
     display: document.querySelector(".display"),
+    status() {
+        return [this.a, this.oper, this.b]
+    },
+    update() {
+        this.display.textContent = this.a + this.oper + this.b
+    },
     a: 1,
     b: 2,
     oper: "*"
 }
 
 function update_display() {
-    let calc_str = calculation.a + calculation.oper + calculation.b
-    calculation.display.textContent = calc_str
+    calculation.update()
 }
 
-function handle_input() {
+function handle_input(input_button) {
 
 }
 
