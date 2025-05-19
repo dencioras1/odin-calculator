@@ -81,6 +81,7 @@ function evaluate_calculation() {
 
 function handle_input(input_button) {
     current_status = calculation.status()
+
     switch(input_button.className) {
         case "digit":
             switch(current_status) {
@@ -157,6 +158,7 @@ function handle_input(input_button) {
                     }
                     break
                 case 1:
+                    console.log("penis1")
                     switch(input_button.id) {
                         case "zero":
                             calculation.b = "0"
@@ -188,7 +190,9 @@ function handle_input(input_button) {
                         case "nine":
                             calculation.b = "9"
                     }
+                    break
                 case 2:
+                    console.log("penis2")
                     switch(input_button.id) {
                         case "dec":
                             if(!calculation.b.includes(".")) calculation.b += "."
@@ -225,6 +229,7 @@ function handle_input(input_button) {
                     }
             }
             break
+            
         case "operator":
             console.log("Clicked operator!")
             switch(current_status) {
@@ -287,6 +292,10 @@ function handle_input(input_button) {
                             calculation.b = null
                             calculation.oper = "/"
                             break
+                        case "equals":
+                            calculation.a = evaluate_calculation()
+                            calculation.b = null
+                            calculation.oper = null
                         case "clear":
                             clear_input()
                     }
