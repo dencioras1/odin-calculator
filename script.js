@@ -19,8 +19,20 @@
 
 
 // Retrieve all DOM elements of class 'digit' and 'operator'
-const numbers = document.querySelectorAll(".digit")
-const operators = document.querySelectorAll(".operator")
+let numbers = document.querySelectorAll(".digit")
+let operators = document.querySelectorAll(".operator")
+
+numbers.forEach(number => {
+    number.addEventListener("click", () => {
+        console.log("Clicked " + number.id + "!")
+    })
+});
+
+operators.forEach(operator => {
+    operator.addEventListener("click", () => {
+        console.log("Clicked " + operator.id + "!")
+    })
+})
 
 // Object for containing display related variables: numbers a and b, and operator
 let calculation = {
@@ -33,6 +45,14 @@ let calculation = {
 function update_display() {
     let calc_str = calculation.a + calculation.oper + calculation.b
     calculation.display.textContent = calc_str
+}
+
+function handle_input() {
+
+}
+
+function evaluate_calculation() {
+    pass
 }
 
 update_display()
