@@ -34,12 +34,24 @@ operators.forEach(operator => {
 let calculation = {
     display: document.querySelector(".display"),
     status() {
-        return [this.a, this.oper, this.b]
+        if(this.a == null && this.oper == null && this.b == null) return -1
+        if(this.a != null && this.oper == null && this.b == null) return 0
+        if(this.a != null && this.oper != null) return 1
     },
     update() {
-        upd = this.a + this.oper + this.b
-        this.display.textContent = upd
-        console.log("Updated to " + upd)
+        state = this.status()
+
+        switch(state) {
+            case -1:
+                this.display.textContent = 0
+                break
+            case 0:
+                this.display.textContent = this.a
+                break
+            case 1:
+                this.display.textContent = this.a + this.oper + this.b
+        }
+        console.log("Updated to " + this.display.textContent)
     },
     a: null,
     b: null,
@@ -51,14 +63,130 @@ function update_display() {
 }
 
 function handle_input(input_button) {
-    console.log(input_button)
+    current_status = calculation.status()
+    console.log("Current status: " + current_status)
 
-    // switch(input_button) {
-    //     case input_button.class === "digit":
-    //         console.log("Clicked digit!")
-    //     case input_button.class === "operator":
-    //         console.log("Clicked operator!")
-    // }
+    switch(input_button.className) {
+        case "digit":
+            console.log("Clicked " + input_button.id)
+
+            switch(current_status) {
+
+                // First-time input for first number (a = null, b = null, oper = null)
+                case -1:
+                    switch(input_button.id) {
+                        case "dec":
+                            calculation.a = "0."
+                            update_display()
+                            break
+                        case "zero":
+                            calculation.a = "0"
+                            update_display()
+                            break
+                        case "one":
+                            calculation.a = "1"
+                            update_display()
+                            break
+                        case "two":
+                            calculation.a = "2"
+                            update_display()
+                            break
+                        case "three":
+                            calculation.a = "3"
+                            update_display()
+                            break   
+                        case "four":
+                            calculation.a = "4"
+                            update_display()
+                            break
+                        case "five":
+                            calculation.a = "5"
+                            update_display()
+                            break
+                        case "six":
+                            calculation.a = "6"
+                            update_display()
+                            break
+                        case "seven":
+                            calculation.a = "7"
+                            update_display()
+                            break
+                        case "eight":
+                            calculation.a = "8"
+                            update_display()
+                            break  
+                        case "nine":
+                            calculation.a = "9"
+                            update_display()
+                    }
+                    break
+
+                // Adding input for first number (a = num, b = null, oper = null)
+                case 0:
+                    switch(input_button.id) {
+                        case "dec":
+                            if(!calculation.a.includes(".")) calculation.a += "."
+                            update_display()
+                            break
+                        case "zero":
+                            calculation.a += "0"
+                            update_display()
+                            break
+                        case "one":
+                            calculation.a += "1"
+                            update_display()
+                            break
+                        case "two":
+                            calculation.a += "2"
+                            update_display()
+                            break
+                        case "three":
+                            calculation.a += "3"
+                            update_display()
+                            break   
+                        case "four":
+                            calculation.a += "4"
+                            update_display()
+                            break
+                        case "five":
+                            calculation.a += "5"
+                            update_display()
+                            break
+                        case "six":
+                            calculation.a += "6"
+                            update_display()
+                            break
+                        case "seven":
+                            calculation.a += "7"
+                            update_display()
+                            break
+                        case "eight":
+                            calculation.a += "8"
+                            update_display()
+                            break   
+                        case "nine":
+                            calculation.a += "9"
+                            update_display()
+                    }
+                    break
+                // Input for second number (a = int, b = int/null, oper = char)
+                case 1:
+                    pass
+    
+            }
+            break
+        case "operator":
+            console.log("Clicked operator!")
+
+            // Input after first number (a = int, b = null, oper = null)
+
+            // Input after second number (a = int, b = int, oper = char) 
+
+
+            switch(input_button.id) {
+
+            }
+    }
 }
 
 function evaluate_calculation() {
@@ -66,7 +194,6 @@ function evaluate_calculation() {
 }
 
 update_display()
-
 
 
 
