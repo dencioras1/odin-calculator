@@ -26,6 +26,7 @@ body {
 .ui {
     display: flex;
     flex-direction: row;
+    padding-top: 12px;
     flex: calc(100% / 6 * 5);
     /* justify-content: space-between; */
     /* align-items: self-start; */
@@ -44,21 +45,19 @@ body {
 }
 
 .digits-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    flex: calc(100% / 5 * 3)
+    display: grid;
+    width: 21vw;
+    grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3);
 }
 
 .operators-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    flex: calc(100% / 5 * 2);
+    display: grid;
+    width: 14vw;
+    grid-template-columns: calc(100% / 2) calc(100% / 2);
 }
 
 button {
-    flex: 50%;
+    /* flex: 50%; */
     font-family: "Orbitron", sans-serif;
     font-size: 5vh;
     border: solid 3px rgb(140, 114, 80);
