@@ -23,15 +23,11 @@ let numbers = document.querySelectorAll(".digit")
 let operators = document.querySelectorAll(".operator")
 
 numbers.forEach(number => {
-    number.addEventListener("click", () => {
-        console.log("Clicked " + number.id + "!")
-    })
+    number.addEventListener("click", function() { handle_input(this) } )
 });
 
 operators.forEach(operator => {
-    operator.addEventListener("click", () => {
-        console.log("Clicked " + operator.id + "!")
-    })
+    operator.addEventListener("click", function() { handle_input(this) } )
 })
 
 // Object for containing display related variables: numbers a and b, and operator
@@ -53,7 +49,14 @@ function update_display() {
 }
 
 function handle_input(input_button) {
-
+    console.log(input_button)
+    
+    // switch(input_button) {
+    //     case input_button.class === "digit":
+    //         console.log("Clicked digit!")
+    //     case input_button.class === "operator":
+    //         console.log("Clicked operator!")
+    // }
 }
 
 function evaluate_calculation() {
