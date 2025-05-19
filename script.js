@@ -37,11 +37,13 @@ let calculation = {
         return [this.a, this.oper, this.b]
     },
     update() {
-        this.display.textContent = this.a + this.oper + this.b
+        upd = this.a + this.oper + this.b
+        this.display.textContent = upd
+        console.log("Updated to " + upd)
     },
-    a: 1,
-    b: 2,
-    oper: "*"
+    a: null,
+    b: null,
+    oper: null
 }
 
 function update_display() {
@@ -50,7 +52,7 @@ function update_display() {
 
 function handle_input(input_button) {
     console.log(input_button)
-    
+
     // switch(input_button) {
     //     case input_button.class === "digit":
     //         console.log("Clicked digit!")
