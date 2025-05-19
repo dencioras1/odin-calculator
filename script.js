@@ -36,11 +36,11 @@ let calculation = {
     status() {
         if(this.a == null && this.oper == null && this.b == null) return -1
         if(this.a != null && this.oper == null && this.b == null) return 0
-        if(this.a != null && this.oper != null) return 1
+        if(this.a != null && this.oper != null && this.b == null) return 1
+        if(this.a != null && this.oper != null && this.b != null) return 2
     },
     update() {
         state = this.status()
-
         switch(state) {
             case -1:
                 this.display.textContent = 0
@@ -49,28 +49,41 @@ let calculation = {
                 this.display.textContent = this.a
                 break
             case 1:
+                this.display.textContent = this.a + this.oper
+                break
+            case 2:
                 this.display.textContent = this.a + this.oper + this.b
         }
-        console.log("Updated to " + this.display.textContent)
+        console.log("Current status " + this.status())
+        console.log(`a = ${this.a != null}; oper = ${this.oper != null}; b = ${this.b != null}`)
     },
     a: null,
     b: null,
     oper: null
 }
 
+function clear_input() {
+    calculation.a = null
+    calculation.b = null
+    calculation.oper = null
+    update_display()
+}
+
 function update_display() {
     calculation.update()
 }
 
+function evaluate_calculation() {
+    answer = 1
+    console.log("Evaluating calculation!")
+    return answer
+}
+
 function handle_input(input_button) {
     current_status = calculation.status()
-    console.log("Current status: " + current_status)
-
     switch(input_button.className) {
         case "digit":
             switch(current_status) {
-
-                // First-time input for first number (a = null, b = null, oper = null)
                 case -1:
                     switch(input_button.id) {
                         case "dec":
@@ -107,8 +120,6 @@ function handle_input(input_button) {
                             calculation.a = "9"
                     }
                     break
-
-                // Adding input for first number (a = num, b = null, oper = null)
                 case 0:
                     switch(input_button.id) {
                         case "dec":
@@ -145,11 +156,42 @@ function handle_input(input_button) {
                             calculation.a += "9"
                     }
                     break
-                // Input when both numbers are inputted (a = int, b = int/null, oper = char)
                 case 1:
                     switch(input_button.id) {
+                        case "zero":
+                            calculation.b = "0"
+                            break
+                        case "one":
+                            calculation.b = "1"
+                            break
+                        case "two":
+                            calculation.b = "2"
+                            break
+                        case "three":
+                            calculation.b = "3"
+                            break   
+                        case "four":
+                            calculation.b = "4"
+                            break
+                        case "five":
+                            calculation.b = "5"
+                            break
+                        case "six":
+                            calculation.b = "6"
+                            break
+                        case "seven":
+                            calculation.b = "7"
+                            break
+                        case "eight":
+                            calculation.b = "8"
+                            break   
+                        case "nine":
+                            calculation.b = "9"
+                    }
+                case 2:
+                    switch(input_button.id) {
                         case "dec":
-                            if(!calculation.a.includes(".")) calculation.a += "."
+                            if(!calculation.b.includes(".")) calculation.b += "."
                             break
                         case "zero":
                             calculation.b += "0"
@@ -186,39 +228,71 @@ function handle_input(input_button) {
         case "operator":
             console.log("Clicked operator!")
             switch(current_status) {
-                // If there is no input (a = null, b = null, oper = null)
                 case -1:
-                    calculation.a = 0
+                    calculation.a = "0"
                     switch(input_button.id) {
                         case "add":
+                            calculation.oper = "+"
+                            break
                         case "sub":
+                            calculation.oper = "-"
+                            break
                         case "mul":
+                            calculation.oper = "*"
+                            break
                         case "div":
+                            calculation.oper = "/"
+                            break
                         case "clear":
-                        case "equals":
+                            clear_input()
                     }
-                    
-                    calculation.oper = input_button.id
-                    update_display()
                     break
-
-                // Input after second number (a = int, b = int, oper = char) 
                 case 0:
-                    calculation.oper = input_button.id
-            }
-
-            
-
-
-            switch(input_button.id) {
-
+                    switch(input_button.id) {
+                        case "add":
+                            calculation.oper = "+"
+                            break
+                        case "sub":
+                            calculation.oper = "-"
+                            break
+                        case "mul":
+                            calculation.oper = "*"
+                            break
+                        case "div":
+                            calculation.oper = "/"
+                            break
+                        case "clear":
+                            clear_input()
+                    }
+                    break
+                case 2:
+                    switch(input_button.id) {
+                        case "add":
+                            calculation.a = evaluate_calculation()
+                            calculation.b = null        
+                            calculation.oper = "+"
+                            break
+                        case "sub":
+                            calculation.a = evaluate_calculation()
+                            calculation.b = null
+                            calculation.oper = "-"
+                            break
+                        case "mul":
+                            calculation.a = evaluate_calculation()
+                            calculation.b = null
+                            calculation.oper = "*"
+                            break
+                        case "div":
+                            calculation.a = evaluate_calculation()
+                            calculation.b = null
+                            calculation.oper = "/"
+                            break
+                        case "clear":
+                            clear_input()
+                    }
             }
     }
     update_display()
-}
-
-function evaluate_calculation() {
-    pass
 }
 
 update_display()
