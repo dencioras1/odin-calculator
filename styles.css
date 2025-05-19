@@ -26,7 +26,6 @@ body {
 .ui {
     display: flex;
     flex-direction: row;
-    padding-top: 12px;
     flex: calc(100% / 6 * 5);
     /* justify-content: space-between; */
     /* align-items: self-start; */
@@ -47,13 +46,13 @@ body {
 .digits-container {
     display: grid;
     width: 21vw;
-    grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3);
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .operators-container {
     display: grid;
     width: 14vw;
-    grid-template-columns: calc(100% / 2) calc(100% / 2);
+    grid-template-columns: 1fr 1fr;
 }
 
 button {
