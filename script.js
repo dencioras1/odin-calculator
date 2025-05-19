@@ -16,3 +16,28 @@
 // 2. Decimals
 // 3. Backspace
 // 4. Keyboard support
+
+
+// Retrieve all DOM elements of class 'digit' and 'operator'
+const numbers = document.querySelectorAll(".digit")
+const operators = document.querySelectorAll(".operator")
+
+// Object for containing display related variables: numbers a and b, and operator
+let calculation = {
+    display: document.querySelector(".display"),
+    a: 1,
+    b: 2,
+    oper: "*"
+}
+
+function update_display() {
+    let calc_str = calculation.a + calculation.oper + calculation.b
+    calculation.display.textContent = calc_str
+}
+
+update_display()
+
+
+
+
+
