@@ -74,13 +74,33 @@ function update_display() {
 }
 
 function evaluate_calculation() {
-    answer = 1
-    console.log("Evaluating calculation!")
+    let answer = null
+
+    switch(calculation.oper) {
+        case "+":
+            answer = parseFloat(calculation.a) + parseFloat(calculation.b)
+            break
+        case "-":
+            answer = parseFloat(calculation.a) - parseFloat(calculation.b)
+            break
+        case "*":
+            answer = parseFloat(calculation.a) * parseFloat(calculation.b)
+            break
+        case "/":
+            answer = parseFloat(calculation.a) / parseFloat(calculation.b)
+    }
+
+    console.log("Calculated: " + answer)
+
+    calculation.a = answer
+    calculation.oper = null
+    calculation.b = null
+
     return answer
 }
 
 function handle_input(input_button) {
-    current_status = calculation.status()
+    let current_status = calculation.status()
 
     switch(input_button.className) {
         case "digit":
@@ -158,7 +178,6 @@ function handle_input(input_button) {
                     }
                     break
                 case 1:
-                    console.log("penis1")
                     switch(input_button.id) {
                         case "zero":
                             calculation.b = "0"
@@ -192,7 +211,6 @@ function handle_input(input_button) {
                     }
                     break
                 case 2:
-                    console.log("penis2")
                     switch(input_button.id) {
                         case "dec":
                             if(!calculation.b.includes(".")) calculation.b += "."
@@ -270,32 +288,45 @@ function handle_input(input_button) {
                             clear_input()
                     }
                     break
-                case 2:
+                case 1:
                     switch(input_button.id) {
                         case "add":
-                            calculation.a = evaluate_calculation()
-                            calculation.b = null        
                             calculation.oper = "+"
                             break
                         case "sub":
-                            calculation.a = evaluate_calculation()
-                            calculation.b = null
                             calculation.oper = "-"
                             break
                         case "mul":
-                            calculation.a = evaluate_calculation()
-                            calculation.b = null
                             calculation.oper = "*"
                             break
                         case "div":
-                            calculation.a = evaluate_calculation()
-                            calculation.b = null
+                            calculation.oper = "/"
+                            break
+                        case "clear":
+                            clear_input()
+                    }
+                    break
+                case 2:
+                    switch(input_button.id) {
+                        case "add":
+                            evaluate_calculation()        
+                            calculation.oper = "+"
+                            break
+                        case "sub":
+                            evaluate_calculation()
+                            calculation.oper = "-"
+                            break
+                        case "mul":
+                            evaluate_calculation()
+                            calculation.oper = "*"
+                            break
+                        case "div":
+                            evaluate_calculation()
                             calculation.oper = "/"
                             break
                         case "equals":
-                            calculation.a = evaluate_calculation()
-                            calculation.b = null
-                            calculation.oper = null
+                            evaluate_calculation()
+                            break
                         case "clear":
                             clear_input()
                     }
