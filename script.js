@@ -68,8 +68,6 @@ function handle_input(input_button) {
 
     switch(input_button.className) {
         case "digit":
-            console.log("Clicked " + input_button.id)
-
             switch(current_status) {
 
                 // First-time input for first number (a = null, b = null, oper = null)
@@ -77,47 +75,36 @@ function handle_input(input_button) {
                     switch(input_button.id) {
                         case "dec":
                             calculation.a = "0."
-                            update_display()
                             break
                         case "zero":
                             calculation.a = "0"
-                            update_display()
                             break
                         case "one":
                             calculation.a = "1"
-                            update_display()
                             break
                         case "two":
                             calculation.a = "2"
-                            update_display()
                             break
                         case "three":
                             calculation.a = "3"
-                            update_display()
                             break   
                         case "four":
                             calculation.a = "4"
-                            update_display()
                             break
                         case "five":
                             calculation.a = "5"
-                            update_display()
                             break
                         case "six":
                             calculation.a = "6"
-                            update_display()
                             break
                         case "seven":
                             calculation.a = "7"
-                            update_display()
                             break
                         case "eight":
                             calculation.a = "8"
-                            update_display()
                             break  
                         case "nine":
                             calculation.a = "9"
-                            update_display()
                     }
                     break
 
@@ -126,67 +113,108 @@ function handle_input(input_button) {
                     switch(input_button.id) {
                         case "dec":
                             if(!calculation.a.includes(".")) calculation.a += "."
-                            update_display()
                             break
                         case "zero":
                             calculation.a += "0"
-                            update_display()
                             break
                         case "one":
                             calculation.a += "1"
-                            update_display()
                             break
                         case "two":
                             calculation.a += "2"
-                            update_display()
                             break
                         case "three":
                             calculation.a += "3"
-                            update_display()
                             break   
                         case "four":
                             calculation.a += "4"
-                            update_display()
                             break
                         case "five":
                             calculation.a += "5"
-                            update_display()
                             break
                         case "six":
                             calculation.a += "6"
-                            update_display()
                             break
                         case "seven":
                             calculation.a += "7"
-                            update_display()
                             break
                         case "eight":
                             calculation.a += "8"
-                            update_display()
                             break   
                         case "nine":
                             calculation.a += "9"
-                            update_display()
                     }
                     break
-                // Input for second number (a = int, b = int/null, oper = char)
+                // Input when both numbers are inputted (a = int, b = int/null, oper = char)
                 case 1:
-                    pass
-    
+                    switch(input_button.id) {
+                        case "dec":
+                            if(!calculation.a.includes(".")) calculation.a += "."
+                            break
+                        case "zero":
+                            calculation.b += "0"
+                            break
+                        case "one":
+                            calculation.b += "1"
+                            break
+                        case "two":
+                            calculation.b += "2"
+                            break
+                        case "three":
+                            calculation.b += "3"
+                            break   
+                        case "four":
+                            calculation.b += "4"
+                            break
+                        case "five":
+                            calculation.b += "5"
+                            break
+                        case "six":
+                            calculation.b += "6"
+                            break
+                        case "seven":
+                            calculation.b += "7"
+                            break
+                        case "eight":
+                            calculation.b += "8"
+                            break   
+                        case "nine":
+                            calculation.b += "9"
+                    }
             }
             break
         case "operator":
             console.log("Clicked operator!")
+            switch(current_status) {
+                // If there is no input (a = null, b = null, oper = null)
+                case -1:
+                    calculation.a = 0
+                    switch(input_button.id) {
+                        case "add":
+                        case "sub":
+                        case "mul":
+                        case "div":
+                        case "clear":
+                        case "equals":
+                    }
+                    
+                    calculation.oper = input_button.id
+                    update_display()
+                    break
 
-            // Input after first number (a = int, b = null, oper = null)
+                // Input after second number (a = int, b = int, oper = char) 
+                case 0:
+                    calculation.oper = input_button.id
+            }
 
-            // Input after second number (a = int, b = int, oper = char) 
+            
 
 
             switch(input_button.id) {
 
             }
     }
+    update_display()
 }
 
 function evaluate_calculation() {
