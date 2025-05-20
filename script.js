@@ -45,9 +45,13 @@ let calculation = {
         state = this.status()
         switch(state) {
             case -1:
+                this.display_a.textContent = null
+                this.display_oper.textContent = null
                 this.display_b.textContent = 0
                 break
             case 0:
+                this.display_a.textContent = null
+                this.display_oper.textContent = null
                 this.display_b.textContent = this.a
                 break
             case 1:
@@ -56,7 +60,7 @@ let calculation = {
                 this.display_b.textContent = 0
                 break
             case 2:
-                this.display_b = this.b
+                this.display_b.textContent = this.b
         }
         console.log("Current status " + this.status())
         console.log(`a = ${this.a != null}; oper = ${this.oper != null}; b = ${this.b != null}`)
@@ -96,12 +100,18 @@ function evaluate_calculation() {
 
     console.log("Calculated: " + answer)
 
-    calculation.b = answer
-    calculation.oper = null
-    calculation.b = null
-    update_display()
+    if(answer == 0) {
+        calculation.a = null
+        calculation.oper = null
+        calculation.b = null
+    }
+    else {
+        calculation.a = answer.toString()
+        calculation.oper = null
+        calculation.b = null
+    }
 
-    return answer
+    update_display()
 }
 
 function handle_input(input_button) {
@@ -188,6 +198,9 @@ function handle_input(input_button) {
                     break
                 case 1:
                     switch(input_button.id) {
+                        case "dec":
+                            calculation.b = "0."
+                            break
                         case "zero":
                             calculation.b = "0"
                             break
@@ -221,42 +234,45 @@ function handle_input(input_button) {
                     break
                 case 2:
                     switch(input_button.id) {
+                        case "sign":
+                            if(!calculation.b.includes("-")) calculation.b = "-" + calculation.b
+                            else calculation.b = calculation.b.slice(1)
+                            break
                         case "dec":
                             if(!calculation.b.includes(".")) calculation.b += "."
                             break
                         case "zero":
-                            calculation.b += "0"
+                            if(calculation.b.length < 9) calculation.b += "0"
                             break
                         case "one":
-                            calculation.b += "1"
+                            if(calculation.b.length < 9) calculation.b += "1"
                             break
                         case "two":
-                            calculation.b += "2"
+                            if(calculation.b.length < 9) calculation.b += "2"
                             break
                         case "three":
-                            calculation.b += "3"
+                            if(calculation.b.length < 9) calculation.b += "3"
                             break   
                         case "four":
-                            calculation.b += "4"
+                            if(calculation.b.length < 9) calculation.b += "4"
                             break
                         case "five":
-                            calculation.b += "5"
+                            if(calculation.b.length < 9) calculation.b += "5"
                             break
                         case "six":
-                            calculation.b += "6"
+                            if(calculation.b.length < 9) calculation.b += "6"
                             break
                         case "seven":
-                            calculation.b += "7"
+                            if(calculation.b.length < 9) calculation.b += "7"
                             break
                         case "eight":
-                            calculation.b += "8"
+                            if(calculation.b.length < 9) calculation.b += "8"
                             break   
                         case "nine":
-                            calculation.b += "9"
+                            if(calculation.b.length < 9) calculation.b += "9"
                     }
             }
             break
-            
         case "operator":
             console.log("Clicked operator!")
             switch(current_status) {
