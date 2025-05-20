@@ -43,6 +43,7 @@ body {
     height: 5vw;
     text-align: right;
     align-content: center;
+    padding-right: 0.2vw;
 }
 
 #a.display {
