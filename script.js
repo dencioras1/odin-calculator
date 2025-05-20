@@ -96,9 +96,10 @@ function evaluate_calculation() {
 
     console.log("Calculated: " + answer)
 
-    calculation.a = answer
+    calculation.b = answer
     calculation.oper = null
     calculation.b = null
+    update_display()
 
     return answer
 }
@@ -149,40 +150,40 @@ function handle_input(input_button) {
                     switch(input_button.id) {
                         case "sign":
                             if(!calculation.a.includes("-")) calculation.a = "-" + calculation.a
-                            else calculation.a = calculation.a.slice()
+                            else calculation.a = calculation.a.slice(1)
                             break
                         case "dec":
                             if(!calculation.a.includes(".")) calculation.a += "."
                             break
                         case "zero":
-                            calculation.a += "0"
+                            if(calculation.a.length < 9) calculation.a += "0"
                             break
                         case "one":
-                            calculation.a += "1"
+                            if(calculation.a.length < 9) calculation.a += "1"
                             break
                         case "two":
-                            calculation.a += "2"
+                            if(calculation.a.length < 9) calculation.a += "2"
                             break
                         case "three":
-                            calculation.a += "3"
+                            if(calculation.a.length < 9) calculation.a += "3"
                             break   
                         case "four":
-                            calculation.a += "4"
+                            if(calculation.a.length < 9) calculation.a += "4"
                             break
                         case "five":
-                            calculation.a += "5"
+                            if(calculation.a.length < 9) calculation.a += "5"
                             break
                         case "six":
-                            calculation.a += "6"
+                            if(calculation.a.length < 9) calculation.a += "6"
                             break
                         case "seven":
-                            calculation.a += "7"
+                            if(calculation.a.length < 9) calculation.a += "7"
                             break
                         case "eight":
-                            calculation.a += "8"
+                            if(calculation.a.length < 9) calculation.a += "8"
                             break   
                         case "nine":
-                            calculation.a += "9"
+                            if(calculation.a.length < 9) calculation.a += "9"
                     }
                     break
                 case 1:
