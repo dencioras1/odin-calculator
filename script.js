@@ -36,10 +36,11 @@ let calculation = {
     display_b: document.querySelector("#b.display"),
     display_oper: document.querySelector("#oper.display"),
     status() {
-        if(this.a == null && this.oper == null && this.b == null) return -1
-        if(this.a != null && this.oper == null && this.b == null) return 0
-        if(this.a != null && this.oper != null && this.b == null) return 1
-        if(this.a != null && this.oper != null && this.b != null) return 2
+        if(this.a == null && this.oper == null && this.b == null && this.evaluated == false) return -1
+        if(this.a != null && this.oper == null && this.b == null && this.evaluated == false) return 0
+        if(this.a != null && this.oper != null && this.b == null && this.evaluated == false) return 1
+        if(this.a != null && this.oper != null && this.b != null && this.evaluated == false) return 2
+        if(this.evaluated == true) return 3
     },
     update() {
         state = this.status()
@@ -60,6 +61,11 @@ let calculation = {
                 this.display_b.textContent = 0
                 break
             case 2:
+                this.display_b.textContent = this.a
+                break
+            case 3:
+                this.display_a.textContent = null
+                this.display_oper.textContent = null
                 this.display_b.textContent = this.b
         }
         console.log("Current status " + this.status())
@@ -67,7 +73,8 @@ let calculation = {
     },
     a: null,
     b: null,
-    oper: null
+    oper: null,
+    evaluated: false
 }
 
 function clear_input() {
@@ -100,18 +107,13 @@ function evaluate_calculation() {
 
     console.log("Calculated: " + answer)
 
-    if(answer == 0) {
-        calculation.a = null
-        calculation.oper = null
-        calculation.b = null
-    }
-    else {
-        calculation.a = answer.toString()
-        calculation.oper = null
-        calculation.b = null
-    }
+    calculation.a = answer.toString()
+    calculation.oper = null
+    calculation.b = null
 
-    update_display()
+    calculation.evaluated = true
+
+    // update_display()
 }
 
 function handle_input(input_button) {
@@ -271,6 +273,47 @@ function handle_input(input_button) {
                         case "nine":
                             if(calculation.b.length < 9) calculation.b += "9"
                     }
+                    break
+                case 3:
+                    calculation.evaluated = false
+                    switch(input_button.id) {
+                        case "sign":
+                            if(!calculation.a.includes("-")) calculation.a = "-" + calculation.a
+                            else calculation.a = calculation.a.slice(1)
+                            break
+                        case "dec":
+                            calculation.a = "0."
+                            break
+                        case "zero":
+                            calculation.a = "0"
+                            break
+                        case "one":
+                            calculation.a = "1"
+                            break
+                        case "two":
+                            calculation.a = "2"
+                            break
+                        case "three":
+                            calculation.a = "3"
+                            break   
+                        case "four":
+                            calculation.a = "4"
+                            break
+                        case "five":
+                            calculation.a = "5"
+                            break
+                        case "six":
+                            calculation.a = "6"
+                            break
+                        case "seven":
+                            calculation.a = "7"
+                            break
+                        case "eight":
+                            calculation.a = "8"
+                            break  
+                        case "nine":
+                            calculation.a = "9"
+                    }
             }
             break
         case "operator":
@@ -355,14 +398,31 @@ function handle_input(input_button) {
                         case "clear":
                             clear_input()
                     }
+                    break
+                case 3:
+                    calculation.evaluated = false
+                    switch(input_button.id) {
+                        case "add":
+                            calculation.oper = "+"
+                            break
+                        case "sub":
+                            calculation.oper = "-"
+                            break
+                        case "mul":
+                            calculation.oper = "*"
+                            break
+                        case "div":
+                            calculation.oper = "/"
+                            break
+                        case "equals":
+                            break
+                        case "clear":
+                            clear_input()
+                    }
             }
     }
     update_display()
 }
-
-console.log(calculation.display_a)
-console.log(calculation.display_b)
-console.log(calculation.display_oper)
 
 update_display()
 
