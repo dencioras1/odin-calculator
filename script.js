@@ -32,7 +32,9 @@ operators.forEach(operator => {
 
 // Object for containing display related variables: numbers a and b, and operator
 let calculation = {
-    display: document.querySelector(".display"),
+    display_a: document.querySelector("#a.display"),
+    display_b: document.querySelector("#b.display"),
+    display_oper: document.querySelector("#oper.display"),
     status() {
         if(this.a == null && this.oper == null && this.b == null) return -1
         if(this.a != null && this.oper == null && this.b == null) return 0
@@ -43,16 +45,18 @@ let calculation = {
         state = this.status()
         switch(state) {
             case -1:
-                this.display.textContent = 0
+                this.display_b.textContent = 0
                 break
             case 0:
-                this.display.textContent = this.a
+                this.display_b.textContent = this.a
                 break
             case 1:
-                this.display.textContent = this.a + this.oper
+                this.display_a.textContent = this.a
+                this.display_oper.textContent = this.oper
+                this.display_b.textContent = 0
                 break
             case 2:
-                this.display.textContent = this.a + this.oper + this.b
+                this.display_b = this.b
         }
         console.log("Current status " + this.status())
         console.log(`a = ${this.a != null}; oper = ${this.oper != null}; b = ${this.b != null}`)
@@ -143,6 +147,10 @@ function handle_input(input_button) {
                     break
                 case 0:
                     switch(input_button.id) {
+                        case "sign":
+                            if(!calculation.a.includes("-")) calculation.a = "-" + calculation.a
+                            else calculation.a = calculation.a.slice()
+                            break
                         case "dec":
                             if(!calculation.a.includes(".")) calculation.a += "."
                             break
@@ -334,6 +342,10 @@ function handle_input(input_button) {
     }
     update_display()
 }
+
+console.log(calculation.display_a)
+console.log(calculation.display_b)
+console.log(calculation.display_oper)
 
 update_display()
 

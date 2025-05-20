@@ -13,52 +13,75 @@ body {
     background-color: rgb(18, 15, 15);
 }
 
-.display {
-    background-color: rgb(4, 34, 7);
-    flex: calc(100% / 5);
-    font-family: "VT323", monospace;
-    font-size: 12vh;
-    color: rgb(0, 231, 23);
-    text-align: right;
-    padding-right: 16px;
-}
-
-.ui {
-    display: flex;
-    flex-direction: row;
-    flex: calc(100% / 6 * 5);
-    /* justify-content: space-between; */
-    /* align-items: self-start; */
-}
-
 .calculator-container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     background-color: rgb(73, 74, 48);
-    width: 35vw;
+    width: 25vw;
     min-width: 120px;
-    height: 70vh;
+    height: 50vh;
     border: solid 12px rgb(73, 66, 57);
     border-radius: 12px;
     box-shadow: 10px azure;
 }
 
-.digits-container {
+.display-container {
     display: grid;
-    width: 21vw;
+    grid-template-columns: 1fr 9fr;
+    grid-template-areas: 
+        ". num_a"
+        "oper num_b";
+    gap: 0.5vw;
+    padding: 0.5vw;
+    padding-bottom: 0px;
+}
+
+.display {
+    background-color: rgb(4, 34, 7);
+    font-family: "VT323", monospace;
+    font-size: 5vw;
+    color: rgb(0, 231, 23);
+    height: 5vw;
+    text-align: right;
+    align-content: center;
+}
+
+#a.display {
+    grid-area: num_a;
+}
+
+#b.display {
+    grid-area: num_b;
+}
+
+#oper.display {
+    grid-area: oper;
+}
+
+.ui {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5vw;
+    padding-top: 0px;
+}
+
+.digits-container {
+    flex-grow: 1;
+    display: grid;
+    flex-grow: calc(100% / 3 * 2);
     grid-template-columns: 1fr 1fr 1fr;
 }
 
 .operators-container {
+    flex-grow: 1;
     display: grid;
-    width: 14vw;
+    flex-grow: calc(100% / 3);
     grid-template-columns: 1fr 1fr;
 }
 
 button {
     /* flex: 50%; */
     font-family: "Orbitron", sans-serif;
-    font-size: 5vh;
+    font-size: 2vw;
     border: solid 3px rgb(140, 114, 80);
     border-radius: 12px;
     background-color: rgb(233, 210, 179);
@@ -70,17 +93,5 @@ button:hover {
 
 button:active {
     background-color: rgb(182, 170, 154);
-}
-
-.digits-container button {
-    flex: calc(100% / 3);
-}
-
-.operator-container button {
-    flex: 50%;
-}
-
-button #equals{
-    display: flex;
 }
 
