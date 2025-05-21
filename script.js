@@ -12,7 +12,7 @@
 // 5. Entering a new digit after an evaluation should clear the memory/input
 
 // Extra credit:
-// 1. sqrt, pow, x^y, fact
+// 1. x^y, fact
 // 2. Decimals
 // 3. Backspace
 // 4. Keyboard support
@@ -103,6 +103,21 @@ function evaluate_calculation() {
             break
         case "/":
             answer = parseFloat(calculation.a) / parseFloat(calculation.b)
+            break
+        case "^":
+            answer = Math.pow(parseFloat(calculation.a), parseFloat(calculation.b))
+            break
+        case "!":
+            console.log(calculation.a)
+            console.log(parseFloat(calculation.a) % 1 == 0)
+            console.log(calculation.b)
+            if(calculation.a != null && parseFloat(calculation.a) % 1 == 0 && calculation.b == null) {
+                answer = 1
+                console.log("Factorial...")
+                for(let i = parseInt(calculation.a); i >= 1; i--) {
+                    answer *= i
+                }
+            }
     }
 
     console.log("Calculated: " + answer)
@@ -334,6 +349,13 @@ function handle_input(input_button) {
                         case "div":
                             calculation.oper = "/"
                             break
+                        case "pow":
+                            calculation.oper = "^"
+                            break
+                        case "fac":
+                            calculation.oper = "!"
+                            evaluate_calculation()
+                            break
                         case "clear":
                             clear_input()
                     }
@@ -352,23 +374,42 @@ function handle_input(input_button) {
                         case "div":
                             calculation.oper = "/"
                             break
+                        case "pow":
+                            calculation.oper = "^"
+                            break
+                        case "fac":
+                            calculation.oper = "!"
+                            evaluate_calculation()
+                            break
                         case "clear":
                             clear_input()
                     }
                     break
                 case 1:
+                    calculation.b = "0"
                     switch(input_button.id) {
                         case "add":
                             calculation.oper = "+"
+                            evaluate_calculation()
                             break
                         case "sub":
                             calculation.oper = "-"
+                            evaluate_calculation()
                             break
                         case "mul":
                             calculation.oper = "*"
+                            evaluate_calculation()
                             break
                         case "div":
                             calculation.oper = "/"
+                            evaluate_calculation()
+                            break
+                        case "pow":
+                            calculation.oper = "^"
+                            evaluate_calculation()
+                            break
+                        case "equals":
+                            evaluate_calculation()
                             break
                         case "clear":
                             clear_input()
@@ -392,6 +433,10 @@ function handle_input(input_button) {
                             evaluate_calculation()
                             calculation.oper = "/"
                             break
+                        case "pow":
+                            evaluate_calculation()
+                            calculation.oper = "^"
+                            break
                         case "equals":
                             evaluate_calculation()
                             break
@@ -414,7 +459,12 @@ function handle_input(input_button) {
                         case "div":
                             calculation.oper = "/"
                             break
-                        case "equals":
+                        case "pow":
+                            calculation.oper = "^"
+                            break
+                        case "fac":
+                            calculation.oper = "!"
+                            evaluate_calculation()
                             break
                         case "clear":
                             clear_input()
