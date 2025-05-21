@@ -48,7 +48,7 @@ let calculation = {
             case -1:
                 this.display_a.textContent = null
                 this.display_oper.textContent = null
-                this.display_b.textContent = 0
+                this.display_b.textContent = "_"
                 break
             case 0:
                 // this.display_a.textContent = null
@@ -80,28 +80,21 @@ let calculation = {
 }
 
 function update_large_numbers() {
-    console.log("Checking for larger numbers...")
-    console.log(calculation.a != null)
-    console.log((calculation.a.includes("-") && calculation.a.length >= 10) || (!calculation.a.includes("-") && calculation.a.length >= 9))
     switch(calculation.status()) {
         case 0:
             if(calculation.a != null && ((calculation.a.includes("-") && calculation.a.length >= 10) || (!calculation.a.includes("-") && calculation.a.length >= 9))){
-                console.log("Updated number a!")
                 calculation.display_b.textContent = parseFloat(calculation.a).toExponential(2)
             } 
             break
         case 1:
-            console.log("Updated numbers a and b!")
             if(calculation.a != null && ((calculation.a.includes("-") && calculation.a.length >= 10) || (!calculation.a.includes("-") && calculation.a.length >= 9))) calculation.display_a.textContent = parseFloat(calculation.a).toExponential(2)
             if(calculation.b != null && ((calculation.b.includes("-") && calculation.b.length >= 10) || (!calculation.b.includes("-") && calculation.b.length >= 9))) calculation.display_b.textContent = parseFloat(calculation.b).toExponential(2)
             break
         case 2:
-            console.log("Updated numbers a and b!")
             if(calculation.a != null && ((calculation.a.includes("-") && calculation.a.length >= 10) || (!calculation.a.includes("-") && calculation.a.length >= 9))) calculation.display_a.textContent = parseFloat(calculation.a).toExponential(2)
             if(calculation.b != null && ((calculation.b.includes("-") && calculation.b.length >= 10) || (!calculation.b.includes("-") && calculation.b.length >= 9))) calculation.display_b.textContent = parseFloat(calculation.b).toExponential(2)
             break
         case 3:
-            console.log("Updated number a!")
             if(calculation.a != null && ((calculation.a.includes("-") && calculation.a.length >= 10) || (!calculation.a.includes("-") && calculation.a.length >= 9))) calculation.display_b.textContent = parseFloat(calculation.a).toExponential(2)
     }
 
@@ -214,34 +207,34 @@ function handle_input(input_button) {
                             if(!calculation.a.includes(".")) calculation.a += "."
                             break
                         case "zero":
-                            calculation.a += "0"
+                            if(calculation.a != "0") calculation.a += "0"
                             break
                         case "one":
-                            calculation.a += "1"
+                            if(calculation.a != "0") calculation.a += "1"
                             break
                         case "two":
-                            calculation.a += "2"
+                            if(calculation.a != "0") calculation.a += "2"
                             break
                         case "three":
-                            calculation.a += "3"
+                            if(calculation.a != "0") calculation.a += "3"
                             break   
                         case "four":
-                            calculation.a += "4"
+                            if(calculation.a != "0") calculation.a += "4"
                             break
                         case "five":
-                            calculation.a += "5"
+                            if(calculation.a != "0") calculation.a += "5"
                             break
                         case "six":
-                            calculation.a += "6"
+                            if(calculation.a != "0") calculation.a += "6"
                             break
                         case "seven":
-                            calculation.a += "7"
+                            if(calculation.a != "0") calculation.a += "7"
                             break
                         case "eight":
-                            calculation.a += "8"
+                            if(calculation.a != "0") calculation.a += "8"
                             break   
                         case "nine":
-                            calculation.a += "9"
+                            if(calculation.a != "0") calculation.a += "9"
                     }
                     break
                 case 1:
@@ -290,34 +283,34 @@ function handle_input(input_button) {
                             if(!calculation.b.includes(".")) calculation.b += "."
                             break
                         case "zero":
-                            calculation.b += "0"
+                            if(calculation.b != "0") calculation.b += "0"
                             break
                         case "one":
-                            calculation.b += "1"
+                            if(calculation.b != "0") calculation.b += "1"
                             break
                         case "two":
-                            calculation.b += "2"
+                            if(calculation.b != "0") calculation.b += "2"
                             break
                         case "three":
-                            calculation.b += "3"
+                            if(calculation.b != "0") calculation.b += "3"
                             break   
                         case "four":
-                            calculation.b += "4"
+                            if(calculation.b != "0") calculation.b += "4"
                             break
                         case "five":
-                            calculation.b += "5"
+                            if(calculation.b != "0") calculation.b += "5"
                             break
                         case "six":
-                            calculation.b += "6"
+                            if(calculation.b != "0") calculation.b += "6"
                             break
                         case "seven":
-                            calculation.b += "7"
+                            if(calculation.b != "0") calculation.b += "7"
                             break
                         case "eight":
-                            calculation.b += "8"
+                            if(calculation.b != "0") calculation.b += "8"
                             break   
                         case "nine":
-                            calculation.b += "9"
+                            if(calculation.b != "0") calculation.b += "9"
                     }
                     break
                 case 3:
@@ -384,8 +377,10 @@ function handle_input(input_button) {
                             calculation.oper = "^"
                             break
                         case "fac":
-                            calculation.oper = "!"
-                            evaluate_calculation()
+                            if(!calculation.a.includes("e")) {
+                                calculation.oper = "!"
+                                evaluate_calculation()
+                            }
                             break
                         case "clear":
                             clear_input()
@@ -409,8 +404,10 @@ function handle_input(input_button) {
                             calculation.oper = "^"
                             break
                         case "fac":
-                            calculation.oper = "!"
-                            evaluate_calculation()
+                            if(!calculation.a.includes("e")) {
+                                calculation.oper = "!"
+                                evaluate_calculation()
+                            }
                             break
                         case "clear":
                             clear_input()
@@ -494,8 +491,10 @@ function handle_input(input_button) {
                             calculation.oper = "^"
                             break
                         case "fac":
-                            calculation.oper = "!"
-                            evaluate_calculation()
+                            if(!calculation.a.includes("e")) {
+                                calculation.oper = "!"
+                                evaluate_calculation()
+                            }
                             break
                         case "clear":
                             clear_input()
