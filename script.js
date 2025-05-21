@@ -128,7 +128,13 @@ function evaluate_calculation() {
             answer = parseFloat(calculation.a) * parseFloat(calculation.b)
             break
         case "/":
-            answer = parseFloat(calculation.a) / parseFloat(calculation.b)
+            if(calculation.b == "0") {
+                clear_input()
+                alert("Don't try any funny business now...")
+            }
+            else {
+                answer = parseFloat(calculation.a) / parseFloat(calculation.b)
+            }
             break
         case "^":
             answer = Math.pow(parseFloat(calculation.a), parseFloat(calculation.b))
