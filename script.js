@@ -61,12 +61,12 @@ let calculation = {
                 this.display_b.textContent = 0
                 break
             case 2:
-                this.display_b.textContent = this.a
+                this.display_b.textContent = this.b
                 break
             case 3:
                 this.display_a.textContent = null
                 this.display_oper.textContent = null
-                this.display_b.textContent = this.b
+                this.display_b.textContent = this.a
         }
         console.log("Current status " + this.status())
         console.log(`a = ${this.a != null}; oper = ${this.oper != null}; b = ${this.b != null}`)
